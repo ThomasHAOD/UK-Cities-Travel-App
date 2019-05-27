@@ -13,16 +13,12 @@ Cities.prototype.getData = function (counter = 0) {
   this.cities_request = new CitiesRequestHelper(this.url)
   this.cities_request.get()
   .then((cities) => {
-    // citiesData.push(cities);
     // TODO: In some way put cities.data into the database here
     this.url = `https://wft-geo-db.p.rapidapi.com${cities.links[1].href}`;
     console.log(counter, cities);
     counter++;
     this.getData(counter);
   })}
-    // console.log(citiesData);
-    // this.url =
-  // console.log(citiesData);
 };
 
 module.exports = Cities;
