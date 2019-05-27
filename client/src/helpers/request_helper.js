@@ -16,6 +16,11 @@ RequestHelper.prototype.post = function (payload) {
   .then(response => response.json())
 };
 
+RequestHelper.prototype.getRegion = function(region) {
+  return fetch(`${this.url}/${region}`)
+  .then(response => response.json())
+}
+
 
 
 module.exports = RequestHelper;

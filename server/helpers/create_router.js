@@ -15,6 +15,12 @@ const createRouter = function (collection) {
       })
   })
 
+  router.get('/:region', (req, res) => {
+    const region = req.params.region;
+    collection.find({region: region}).toArray()
+    .then(docs => res.json(docs))
+  })
+
   return router;
 
 }

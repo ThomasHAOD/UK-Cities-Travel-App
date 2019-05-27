@@ -25,4 +25,19 @@ Cities.prototype.getData = function (counter = 0) {
   })}
 };
 
+Cities.prototype.bindEvents = function() {
+  PubSub.subscribe("RegionSelectorView:region-selected", (event) => {
+    this.displayCities(event.detail)
+  })
+  
+}
+
+Cities.prototype.displayCities = function(region) {
+  this.request.getRegion(region)
+    .then((cities) => {
+      PubSub.publish('Cities:cities-loaded', cities)
+    }) 
+}
+
+
 module.exports = Cities;
