@@ -5,12 +5,13 @@ const CityView = function (container) {
 CityView.prototype.render = function (city) {
     const cityContainer = document.createElement('div')
     cityContainer.addClass = 'city'
+    cityContainer.id = `${city.name}-container`
     
     const name = this.createHeading(city.name)
     cityContainer.appendChild(name)
 
-    const form = document.createElement('form');
-    form.id = 'rating-review-form';
+    const ratingForm = document.createElement('form');
+    ratingForm.id = `${city.name}rating-form`;
 
     const rating1 = document.createElement('input');
     rating1.setAttribute('type', 'radio');
@@ -43,23 +44,30 @@ CityView.prototype.render = function (city) {
     rating5.setAttribute('maxlength', '5-star');
 
 
-    form.appendChild(rating1);
-    form.appendChild(rating2);
-    form.appendChild(rating3);
-    form.appendChild(rating4);
-    form.appendChild(rating5);
+    ratingForm.appendChild(rating1);
+    ratingForm.appendChild(rating2);
+    ratingForm.appendChild(rating3);
+    ratingForm.appendChild(rating4);
+    ratingForm.appendChild(rating5);
+
+    const reviewForm = document.createElement('form');
+    reviewForm.id = `${city.name}review-form`;
 
     const review = document.createElement('textarea');
     review.setAttribute('maxlength', 1000);
     review.id = `review`;
 
-    form.appendChild(review);
+    const submit = document.createElement('input');
+    submit.setAttribute('type', 'submit')
+    submit.setAttribute('value', 'Submit Review')
 
-    cityContainer.appendChild(form);
-    
+    reviewForm.appendChild(review);
+    reviewForm.appendChild(submit);
+
+    cityContainer.appendChild(ratingForm);
+    cityContainer.appendChild(reviewForm);
 
     this.container.appendChild(cityContainer)
-
 
 }
 

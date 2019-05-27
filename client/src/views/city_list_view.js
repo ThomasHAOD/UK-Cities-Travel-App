@@ -9,6 +9,9 @@ CityListView.prototype.bindEvents = function () {
     PubSub.subscribe('Cities:cities-loaded', (event) => {
         this.render(event.detail)
     })
+    this.container.addEventListener('change', (event) => {
+        console.log(event)
+    })
 }
 
 
