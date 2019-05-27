@@ -1,3 +1,5 @@
+const CityListView = require('./views/city_list_view.js')
+
 const RegionSelectorView = require("./views/region_selector_view.js");
 const Cities = require(`./models/cities.js`);
 
@@ -7,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const regionSelectorView = new RegionSelectorView(regionSelector);
     regionSelectorView.bindEvents()
 
+    const cityContainer = document.querySelector('#cities-view-container')
+    const cityListView = new CityListView(cityContainer)
+    cityListView.bindEvents()
 
 
     const cities = new Cities(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?countryIds=gb&minPopulation=100000&types=CITY`, `http://localhost:3000/api/cities`)
