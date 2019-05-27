@@ -19,7 +19,8 @@ CityListView.prototype.bindEvents = function () {
 }
 
 CityListView.prototype.handleSubmit = function(event){
-    const review = event.target
+    const review = event.target.review.value;
+    const rating = event.target.rating.value;
 }
 
 

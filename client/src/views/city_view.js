@@ -10,6 +10,20 @@ CityView.prototype.render = function (city) {
     const name = this.createHeading(city.name)
     cityContainer.appendChild(name)
 
+    const reviewRatingForm = this.createForm()
+    cityContainer.appendChild(reviewRatingForm);
+
+    this.container.appendChild(cityContainer)
+
+}
+
+CityView.prototype.createHeading = function(textContent) {
+    const heading = document.createElement('h3')
+    heading.textContent = textContent
+    return heading
+}
+
+CityView.prototype.createForm = function(){
     const form = document.createElement('form');
     form.id = 'form';
     form.setAttribute('action', 'POST')
@@ -20,7 +34,7 @@ CityView.prototype.render = function (city) {
     rating1.id = '1-star';
     rating1.setAttribute('name', 'rating');
     rating1.setAttribute('value', '1-star');
-    
+
     const rating2 = document.createElement('input');
     rating2.setAttribute('type', 'radio');
     rating2.id = '2-star';
@@ -62,16 +76,11 @@ CityView.prototype.render = function (city) {
     form.appendChild(review);
     form.appendChild(submit);
 
-    cityContainer.appendChild(form);
-
-    this.container.appendChild(cityContainer)
-
+    return form;
 }
 
-CityView.prototype.createHeading = function(textContent) {
-    const heading = document.createElement('h3')
-    heading.textContent = textContent
-    return heading
+CityView.prototype.showRatingReview = function(){
+    
 }
 
 module.exports = CityView;
