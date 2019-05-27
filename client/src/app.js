@@ -1,4 +1,5 @@
-const RegionSelectorView = require("./views/region_selector_view.js")
+const RegionSelectorView = require("./views/region_selector_view.js");
+const Cities = require(`./models/cities.js`);
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -8,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
+    const cities = new Cities(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?countryIds=gb&minPopulation=100000&types=CITY`)
+    cities.getData()
 
 
 })
