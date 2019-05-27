@@ -2,21 +2,24 @@ const RequestHelper = require('../helpers/request_helper.js');
 const CitiesRequestHelper = require('../helpers/cities_request_helper.js');
 const PubSub = require(`../helpers/pubsub.js`);
 
-const Cities = function (url) {
-  this.url = url;
-  // this.request = new RequestHelper(this.url)
+const Cities = function (apiUrl, dbUrl) {
+  this.apiUrl = apiUrl;
+  this.dbUrl = dbUrl;
+  this.request = new RequestHelper(this.dbUrl)
 
 }
 
+let index = 1;
 Cities.prototype.getData = function (counter = 0) {
-  if (counter < 2) {
-  this.cities_request = new CitiesRequestHelper(this.url)
+  if (counter < 22) {
+  this.cities_request = new CitiesRequestHelper(this.apiUrl)
   this.cities_request.get()
   .then((cities) => {
     // TODO: In some way put cities.data into the database here
-
-    this.url = `https://wft-geo-db.p.rapidapi.com${cities.links[1].href}`;
+    this.request.post(cities.data)
+    this.apiUrl = `https://wft-geo-db.p.rapidapi.com${cities.links[index].href}`;
     console.log(counter, cities);
+    index = 2;
     counter++;
     this.getData(counter);
   })}
