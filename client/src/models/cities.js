@@ -14,6 +14,7 @@ Cities.prototype.getData = function (counter = 0) {
   this.cities_request.get()
   .then((cities) => {
     // TODO: In some way put cities.data into the database here
+
     this.url = `https://wft-geo-db.p.rapidapi.com${cities.links[1].href}`;
     console.log(counter, cities);
     counter++;
