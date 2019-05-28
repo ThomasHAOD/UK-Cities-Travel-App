@@ -2,18 +2,37 @@ body {
     font-family: 'Alegreya Sans', sans-serif;
 }
 
-#region-list {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    list-style-type: none;
-}
-
 .region-list-item {
     border: 2px;
     border-color: black;
     margin: 5px;
 }
 
+#nav-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+}
+
+#cities-maps-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+}
+
+#cities-view-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 75vh;
+    overflow: scroll;
+}
+
 #map {
-  height: 800px;
+    min-height: 400px;
+    height: 75vh;
+    width: 100%;
+}
+
+#region-list {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style-type: none;
 }

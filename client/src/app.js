@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const cities = new Cities(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?countryIds=gb&minPopulation=100000&types=CITY`, `http://localhost:3000/api/cities`)
   cities.bindEvents()
-  cities.getData()
+  // cities.getData()
 
 
 })
