@@ -6,6 +6,7 @@ const MapView = function (mapDiv, latLng, zoomLevel) {
   this.latLng = latLng;
   this.zoomLevel = zoomLevel;
   this.leafletMap = null;
+  this.markers = L.layerGroup()
 }
 
 MapView.prototype.init = function () {
@@ -17,19 +18,24 @@ MapView.prototype.init = function () {
     accessToken: 'pk.eyJ1IjoibW9ub2xvZ2lub21pY29uIiwiYSI6ImNqdzF3dms3ajAxMGs0Y281cnZ2em5xc2YifQ.yZEyn4RpqBBBdCQ7Oem2Iw'
   }).addTo(this.leafletMap);}
 
+  // const markers = L.layerGroup()
   MapView.prototype.bindEvents = function () {
     PubSub.subscribe('Cities:cities-loaded', (event) => {
+      this.markers.clearLayers()
       event.detail.forEach((city) => {
         const lat = city.latitude
         const long = city.longitude
         const coords = [lat, long]
-        this.addMarker(coords)
+        this.addMarker(coords, this.markers)
       })
+      this.leafletMap.addLayer(this.markers)
     })
   }
 
-  MapView.prototype.addMarker = function (coords) {
-    leaflet.marker(coords).addTo(this.leafletMap);
+  MapView.prototype.addMarker = function (coords, layerGroup) {
+    // leaflet.marker(coords).addTo(this.leafletMap);
+    const marker = L.marker(coords)
+    layerGroup.addLayer(marker)
   };
 
 module.exports = MapView;
