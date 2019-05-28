@@ -30,11 +30,30 @@ MapView.prototype.init = function () {
       })
       this.leafletMap.addLayer(this.markers)
     })
+
+    PubSub.subscribe('Cities:my-cities-loaded', (event) => {
+      this.markers.clearLayers()
+      event.detail.forEach((city) => {
+        const lat = city.latitude
+        const long = city.longitude
+        const rating = city.rating
+        const name = city.name
+        const coords = [lat, long]
+        this.addMarkerRating(name, rating, coords, this.markers)
+      })
+      this.leafletMap.addLayer(this.markers)
+    })
   }
 
   MapView.prototype.addMarker = function (name, coords, layerGroup) {
     const marker = L.marker(coords)
     marker.bindPopup(name)
+    layerGroup.addLayer(marker)
+  };
+
+  MapView.prototype.addMarkerRating = function (name, rating, coords, layerGroup) {
+    const marker = L.marker(coords)
+    marker.bindPopup(`<b>${name}</b><br>${rating}`)
     layerGroup.addLayer(marker)
   };
 
