@@ -15,6 +15,7 @@ CityListView.prototype.bindEvents = function () {
         event.preventDefault();
         console.log(event.target.rating.value)
         console.log(event.target.review.value)
+        console.log(event.target.objectID.value)
     })
 }
 
