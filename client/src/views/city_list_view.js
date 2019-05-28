@@ -6,9 +6,21 @@ const CityListView = function (container) {
 }
 
 CityListView.prototype.bindEvents = function () {
+
     PubSub.subscribe('Cities:cities-loaded', (event) => {
         this.render(event.detail);
     })
+
+    this.container.addEventListener('submit', (event) => {
+        event.preventDefault();
+        console.log(event.target.rating.value)
+        console.log(event.target.review.value)
+    })
+}
+
+CityListView.prototype.handleSubmit = function(event){
+    const review = event.target.review.value;
+    const rating = event.target.rating.value;
 }
 
 
