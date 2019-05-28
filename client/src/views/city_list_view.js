@@ -7,7 +7,7 @@ const CityListView = function (container) {
 
 CityListView.prototype.bindEvents = function () {
     PubSub.subscribe('Cities:cities-loaded', (event) => {
-        this.render(event.detail)
+        this.render(event.detail);
     })
 }
 
