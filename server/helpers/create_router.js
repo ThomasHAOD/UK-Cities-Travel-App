@@ -21,7 +21,22 @@ const createRouter = function (collection) {
     .then(docs => res.json(docs))
   })
 
-router.patch('/:id')
+router.patch('/:id', (req, res) => {
+  const id = req.params.id
+  const review = req.body.review
+  const rating = req.body.rating
+  const reviewed = req.body.reviewed
+  collection
+    .updateOne(
+      {_id: ObjectID(id)},
+      {$set: {review: review,
+             rating: rating,
+             reviewed: reviewed}
+      }
+    )
+    .then((id) => collection.findOne(id).toArray())
+    .then(docs => res.json(docs))
+})
 
   return router;
 

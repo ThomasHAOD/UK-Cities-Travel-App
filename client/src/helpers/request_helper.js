@@ -21,14 +21,14 @@ RequestHelper.prototype.getRegion = function(region) {
   .then(response => response.json())
 }
 
-// RequestHelper.prototype.patch = function (payload) {
-//   return fetch(`${this.url}/${payload.objectID.value}`, {
-//     method: 'PATCH',
-//     body: JSON.stringify(payload),
-//     headers: {'Content-Type': 'application/json'}
-//   })
-//   .then(response => response.json())
-// }
+RequestHelper.prototype.patch = function (payload) {
+  return fetch(`${this.url}/${payload.objectID}`, {
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+    headers: {'Content-Type': 'application/json'}
+  })
+  .then(response => response.json())
+}
 
 
 module.exports = RequestHelper;
