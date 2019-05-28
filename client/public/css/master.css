@@ -2,14 +2,9 @@ body {
     font-family: 'Alegreya Sans', sans-serif;
 }
 
-section {
-    place-items: center center;
-}
-
 #region-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    place-items: center center;
+    grid-template-columns: repeat(7, 1fr);
     list-style-type: none;
 }
 
@@ -20,6 +15,5 @@ section {
 }
 
 #map {
-  display: flex;
-  height: 500px;
+  height: 100px;
 }

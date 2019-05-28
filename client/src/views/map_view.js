@@ -9,14 +9,12 @@ const MapView = function (mapDiv, latLng, zoomLevel) {
 }
 
 MapView.prototype.init = function () {
-  const url = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-  const tileLayer = new leaflet.TileLayer(url, {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://carto.com/attributions">CARTO</a>'
-  });
-
-  this.leafletMap = leaflet.map(this.mapDiv)
-    .addLayer(tileLayer)
-    .setView(this.latLng, this.zoomLevel)
-}
+  const mymap = L.map(this.mapDiv).setView(this.latLng, this.zoomLevel);
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoibW9ub2xvZ2lub21pY29uIiwiYSI6ImNqdzF3dms3ajAxMGs0Y281cnZ2em5xc2YifQ.yZEyn4RpqBBBdCQ7Oem2Iw'
+  }).addTo(mymap);}
 
 module.exports = MapView;
