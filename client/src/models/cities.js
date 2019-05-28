@@ -2,26 +2,24 @@ const RequestHelper = require('../helpers/request_helper.js');
 const CitiesRequestHelper = require('../helpers/cities_request_helper.js');
 const PubSub = require(`../helpers/pubsub.js`);
 
-const Cities = function (apiUrl, dbUrl) {
+const Cities = function (apiUrl, citiesUrl, myCitiesUrl) {
   this.apiUrl = apiUrl;
-  this.dbUrl = dbUrl;
-  this.request = new RequestHelper(this.dbUrl)
-
+  this.citiesUrl = citiesUrl;
+  this.myCitiesUrl = myCitiesUrl;
+  this.citiesRequest = new RequestHelper(this.citiesUrl);
+  this.myCitiesRequest = new RequestHelper(this.myCitiesUrl);
 }
 
-let index = 1;
-Cities.prototype.getData = function (counter = 0) {
+Cities.prototype.getData = function (counter = 0, index = 1) {
   if (counter < 22) {
-  this.cities_request = new CitiesRequestHelper(this.apiUrl)
-  this.cities_request.get()
+  this.apiRequest = new CitiesRequestHelper(this.apiUrl)
+  this.apiRequest.get()
   .then((cities) => {
-    // TODO: In some way put cities.data into the database here
-    this.request.post(cities.data)
+    this.citiesRequest.post(cities.data)
     this.apiUrl = `https://wft-geo-db.p.rapidapi.com${cities.links[index].href}`;
-    console.log(counter, cities);
     index = 2;
     counter++;
-    this.getData(counter);
+    this.getData(counter, index);
   })}
 };
 
@@ -30,21 +28,20 @@ Cities.prototype.bindEvents = function() {
     this.displayCities(event.detail)
   })
   PubSub.subscribe('CityView:review-submitted', (event) => {
-    this.request.patch(event.detail)
+    this.citiesRequest.patch(event.detail)
   })
   PubSub.subscribe('MyCitiesSelectView:my-cities-selected', (event) => {
-    this.request.get().then((cities) => {
+    this.citiesRequest.get().then((cities) => {
       PubSub.publish('Cities:my-cities-loaded', cities)
     })
   })
-
 }
 
 
 
 
 Cities.prototype.displayCities = function(region) {
-  this.request.getRegion(region)
+  this.citiesRequest.getRegion(region)
     .then((cities) => {
       PubSub.publish('Cities:cities-loaded', cities)
     })
