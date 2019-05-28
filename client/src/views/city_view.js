@@ -1,3 +1,5 @@
+const PubSub = require('../helpers/pubsub.js')
+
 const CityView = function (container) {
     this.container = container
 }
@@ -6,11 +8,11 @@ CityView.prototype.render = function (city) {
     const cityContainer = document.createElement('div')
     cityContainer.addClass = 'city'
     cityContainer.id = `${city.name}-container`
-    
+
     const name = this.createHeading(city.name)
     cityContainer.appendChild(name)
 
-    const reviewRatingForm = this.createForm()
+    const reviewRatingForm = this.createForm(city)
     cityContainer.appendChild(reviewRatingForm);
 
     this.container.appendChild(cityContainer)
@@ -23,7 +25,7 @@ CityView.prototype.createHeading = function(textContent) {
     return heading
 }
 
-CityView.prototype.createForm = function(){
+CityView.prototype.createForm = function(city){
     const form = document.createElement('form');
     form.id = 'form';
     form.setAttribute('action', 'POST')
@@ -69,16 +71,37 @@ CityView.prototype.createForm = function(){
     review.setAttribute('maxlength', 1000);
     review.id = `review`;
 
+    const objectID = document.createElement('input')
+    objectID.style.display = 'none'
+    objectID.setAttribute('name', 'objectID')
+    objectID.value = city._id
+
     const submit = document.createElement('input');
     submit.setAttribute('type', 'submit')
     submit.setAttribute('value', 'Submit Review')
 
     form.appendChild(review);
     form.appendChild(submit);
+    form.appendChild(objectID);
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      const newReview = this.createReview(event.target)
+      PubSub.publish('CityView:review-submitted', newReview)
+    })
 
     return form;
 }
 
+CityView.prototype.createReview = function (form) {
+  const newReview = {
+    rating: form.rating.value,
+    review: form.review.value,
+    objectID: form.objectID.value,
+    reviewed: true
+  }
+  return newReview
+}
 
 
 module.exports = CityView;

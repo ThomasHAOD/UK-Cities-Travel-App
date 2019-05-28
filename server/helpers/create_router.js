@@ -21,6 +21,8 @@ const createRouter = function (collection) {
     .then(docs => res.json(docs))
   })
 
+router.patch('/:id')
+
   return router;
 
 }

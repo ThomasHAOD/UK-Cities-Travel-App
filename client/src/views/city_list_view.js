@@ -11,11 +11,11 @@ CityListView.prototype.bindEvents = function () {
         this.render(event.detail);
     })
 
-    this.container.addEventListener('submit', (event) => {
-        event.preventDefault();
-        PubSub.publish('CityListView:new-city-review', event.target)
-      
-    })
+    // this.container.addEventListener('submit', (event) => {
+    //     event.preventDefault();
+    //     PubSub.publish('CityListView:new-city-review', event.target)
+    //
+    // })
 }
 
 CityListView.prototype.handleSubmit = function(event){

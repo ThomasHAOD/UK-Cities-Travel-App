@@ -29,14 +29,21 @@ Cities.prototype.bindEvents = function() {
   PubSub.subscribe("RegionSelectorView:region-selected", (event) => {
     this.displayCities(event.detail)
   })
-  
+  PubSub.subscribe('CityView:review-submitted', (event) => {
+    console.log(event.detail);
+    this.request.patch(event.detail)
+  })
+
 }
+
+
+
 
 Cities.prototype.displayCities = function(region) {
   this.request.getRegion(region)
     .then((cities) => {
       PubSub.publish('Cities:cities-loaded', cities)
-    }) 
+    })
 }
 
 
