@@ -25,16 +25,18 @@ MapView.prototype.init = function () {
       event.detail.forEach((city) => {
         const lat = city.latitude
         const long = city.longitude
+        const name = city.name
         const coords = [lat, long]
-        this.addMarker(coords, this.markers)
+        this.addMarker(name, coords, this.markers)
       })
       this.leafletMap.addLayer(this.markers)
     })
   }
 
-  MapView.prototype.addMarker = function (coords, layerGroup) {
+  MapView.prototype.addMarker = function (name, coords, layerGroup) {
     // leaflet.marker(coords).addTo(this.leafletMap);
     const marker = L.marker(coords)
+    marker.bindPopup(name)
     layerGroup.addLayer(marker)
   };
 
