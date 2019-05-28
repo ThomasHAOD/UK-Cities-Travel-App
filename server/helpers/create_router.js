@@ -34,7 +34,7 @@ router.patch('/:id', (req, res) => {
              reviewed: reviewed}
       }
     )
-    .then((id) => collection.findOne(id).toArray())
+    .then(() => collection.find().toArray())
     .then(docs => res.json(docs))
 })
 

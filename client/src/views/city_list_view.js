@@ -11,18 +11,19 @@ CityListView.prototype.bindEvents = function () {
         this.render(event.detail);
     })
 
-    // this.container.addEventListener('submit', (event) => {
-    //     event.preventDefault();
-    //     PubSub.publish('CityListView:new-city-review', event.target)
-    //
-    // })
+    PubSub.subscribe('MyCitiesSelectView:my-cities-selected', (event) => {
+      this.renderMyCities(event.detail)
+    })
+
 }
 
-CityListView.prototype.handleSubmit = function(event){
-    const review = event.target.review.value;
-    const rating = event.target.rating.value;
-}
-
+CityListView.prototype.renderMyCities = function (cities) {
+  this.container.innerHTML = ''
+  const myCitiesView = new MyCitiesView(this.container)
+  cities.forEach((city) => {
+    myCitiesView.render(city)
+  })
+};
 
 CityListView.prototype.render = function (cities) {
     this.container.innerHTML = ''
