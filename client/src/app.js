@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mapdiv = document.querySelector(`#map`);
   const mapView = new MapView(mapdiv, london, 7);
   mapView.init()
+  mapView.bindEvents()
 
   const regionSelector = document.querySelector("#region-list");
   const regionSelectorView = new RegionSelectorView(regionSelector);
