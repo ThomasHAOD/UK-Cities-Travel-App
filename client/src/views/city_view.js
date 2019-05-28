@@ -79,8 +79,6 @@ CityView.prototype.createForm = function(){
     return form;
 }
 
-CityView.prototype.showRatingReview = function(){
-    
-}
+
 
 module.exports = CityView;
