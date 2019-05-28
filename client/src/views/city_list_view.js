@@ -13,8 +13,8 @@ CityListView.prototype.bindEvents = function () {
 
     this.container.addEventListener('submit', (event) => {
         event.preventDefault();
-        console.log(event.target.rating.value)
-        console.log(event.target.review.value)
+        PubSub.publish('CityListView:new-city-review', event.target)
+      
     })
 }
 
