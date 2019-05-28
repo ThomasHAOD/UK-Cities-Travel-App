@@ -14,8 +14,12 @@ MongoClient.connect('mongodb://localhost:27017')
   .then((client) => {
     const db = client.db('uk_cities_hub');
     const citiesCollection = db.collection('uk_cities');
-    const citiesRouter = createRouter(citiesCollection)
+    const citiesRouter = createRouter(citiesCollection);
     app.use('/api/cities', citiesRouter);
+
+    const myCitiesCollection = db.collection('my_uk_cities');
+    const myCitiesRouter = createRouter(myCitiesCollection);
+    app.use('/api/my-cities', myCitiesRouter);
   })
   .catch(console.err);
 

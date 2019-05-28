@@ -12,7 +12,7 @@ CityView.prototype.render = function (city) {
     const name = this.createHeading(city.name)
     cityContainer.appendChild(name)
 
-    const reviewRatingForm = this.createForm(city)
+    const reviewRatingForm = this.createForm(city, cityContainer)
     cityContainer.appendChild(reviewRatingForm);
 
     this.container.appendChild(cityContainer)
@@ -25,7 +25,7 @@ CityView.prototype.createHeading = function(textContent) {
     return heading
 }
 
-CityView.prototype.createForm = function(city){
+CityView.prototype.createForm = function(city, container){
     const form = document.createElement('form');
     form.id = 'form';
     form.setAttribute('action', 'POST')
@@ -88,6 +88,7 @@ CityView.prototype.createForm = function(city){
       event.preventDefault()
       const newReview = this.createReview(event.target)
       PubSub.publish('CityView:review-submitted', newReview)
+      container.innerHTML = ``
     })
 
     return form;
