@@ -1,5 +1,6 @@
 const PubSub = require('../helpers/pubsub.js');
 const CityView = require('./city_view.js');
+const MyCitiesView = require('./my_cities_view.js')
 
 const CityListView = function (container) {
     this.container = container
@@ -10,11 +11,9 @@ CityListView.prototype.bindEvents = function () {
     PubSub.subscribe('Cities:cities-loaded', (event) => {
         this.render(event.detail);
     })
-
-    PubSub.subscribe('MyCitiesSelectView:my-cities-selected', (event) => {
-      this.renderMyCities(event.detail)
+    PubSub.subscribe('Cities:my-cities-loaded', (event) =>{
+      this.renderMyCities(event.detail);
     })
-
 }
 
 CityListView.prototype.renderMyCities = function (cities) {

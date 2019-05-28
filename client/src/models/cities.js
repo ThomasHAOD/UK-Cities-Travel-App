@@ -30,8 +30,12 @@ Cities.prototype.bindEvents = function() {
     this.displayCities(event.detail)
   })
   PubSub.subscribe('CityView:review-submitted', (event) => {
-    console.log(event.detail);
     this.request.patch(event.detail)
+  })
+  PubSub.subscribe('MyCitiesSelectView:my-cities-selected', (event) => {
+    this.request.get().then((cities) => {
+      PubSub.publish('Cities:my-cities-loaded', cities)
+    })
   })
 
 }
