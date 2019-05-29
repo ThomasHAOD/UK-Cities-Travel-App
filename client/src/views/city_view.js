@@ -34,7 +34,7 @@ CityView.prototype.createItineraryButton = function(city){
   itineraryButton.textContent = 'Add to Itinerary'
 
   itineraryButton.addEventListener('click', (event) => {
-    
+
     const newItineraryItem = this.createItineraryItem(city)
     PubSub.publish('CityView:itinerary-item-submitted', newItineraryItem)
     // cityContainer.innerHTML = `Added to Itinerary`
@@ -46,41 +46,28 @@ CityView.prototype.createForm = function(city, container){
     const form = document.createElement('form');
     form.id = 'form';
 
-    const rating1 = document.createElement('input');
-    rating1.setAttribute('type', 'radio');
-    rating1.id = '1-star';
-    rating1.setAttribute('name', 'rating');
-    rating1.setAttribute('value', '1-star');
+    const rating1 = this.createRadioInput('1');
+    const rating2 = this.createRadioInput('2');
+    const rating3 = this.createRadioInput('3');
+    const rating4 = this.createRadioInput('4');
+    const rating5 = this.createRadioInput('5');
 
-    const rating2 = document.createElement('input');
-    rating2.setAttribute('type', 'radio');
-    rating2.id = '2-star';
-    rating2.setAttribute('name', 'rating');
-    rating2.setAttribute('value', '2-star');
-
-    const rating3 = document.createElement('input');
-    rating3.setAttribute('type', 'radio');
-    rating3.id = '3-star';
-    rating3.setAttribute('name', 'rating');
-    rating3.setAttribute('value', '3-star');
-
-    const rating4 = document.createElement('input');
-    rating4.setAttribute('type', 'radio');
-    rating4.id = '4-star';
-    rating4.setAttribute('name', 'rating');
-    rating4.setAttribute('value', '4-star');
-
-    const rating5 = document.createElement('input');
-    rating5.setAttribute('type', 'radio');
-    rating5.id = '5-star';
-    rating5.setAttribute('name', 'rating');
-    rating5.setAttribute('value', '5-star');
+    const label1 = this.createRadioLabel('1');
+    const label2 = this.createRadioLabel('2');
+    const label3 = this.createRadioLabel('3');
+    const label4 = this.createRadioLabel('4');
+    const label5 = this.createRadioLabel('5');
 
     form.appendChild(rating1);
     form.appendChild(rating2);
     form.appendChild(rating3);
     form.appendChild(rating4);
     form.appendChild(rating5);
+    form.appendChild(label1);
+    form.appendChild(label2);
+    form.appendChild(label3);
+    form.appendChild(label4);
+    form.appendChild(label5);
 
     const review = document.createElement('textarea');
     review.setAttribute('maxlength', 1000);
@@ -119,6 +106,22 @@ CityView.prototype.createForm = function(city, container){
     })
 
     return form;
+}
+
+CityView.prototype.createRadioInput = function (num) {
+  const newInput = document.createElement('input');
+  newInput.setAttribute('type', 'radio');
+  newInput.id = `${num}-star`;
+  newInput.setAttribute('value', `${num}-star`);
+  newInput.setAttribute('name', 'rating');
+  return newInput;
+}
+
+CityView.prototype.createRadioLabel = function (num) {
+  const newLabel = document.createElement('label');
+  newLabel.setAttribute('for', `${num}-star`);
+  newLabel.setAttribute('title', 'text');
+  return newLabel
 }
 
 CityView.prototype.createReview = function (form) {
