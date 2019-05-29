@@ -5,6 +5,7 @@ body {
     background-position: center top;
     background-size: 100% 25vh;
     color: rgb(48, 48, 48);
+    background-color: black;
 }
 
 /* header {
@@ -55,13 +56,15 @@ input[type=button], input[type=submit], input[type=reset], button {
     grid-gap: 20px;
     width: 100%;
     position: relative;
-    bottom: 0;
+    margin-bottom: 0px;
 }
 
 #cities-maps-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    height: 75vh;
+    height: 85vh;
+    position: relative;
+    bottom: 0;
 }
 
 #cities-view-container {
@@ -101,6 +104,12 @@ input[type=button], input[type=submit], input[type=reset], button {
 
 #true.my-cities-menu-item:hover {
     background-color: lightsalmon;
+    cursor: pointer;
+}
+
+#itinerary.itinerary-menu-item:hover {
+    background-color: lightsalmon;
+    cursor: pointer;
 }
 
 
