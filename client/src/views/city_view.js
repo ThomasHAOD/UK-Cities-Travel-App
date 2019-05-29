@@ -15,6 +15,9 @@ CityView.prototype.render = function (city) {
     const reviewRatingForm = this.createForm(city, cityContainer)
     cityContainer.appendChild(reviewRatingForm);
 
+    const itineraryButton = this.createItineraryButton()
+    cityContainer.appendChild(itineraryButton)
+
     this.container.appendChild(cityContainer)
 
 }
@@ -23,6 +26,20 @@ CityView.prototype.createHeading = function(textContent) {
     const heading = document.createElement('h3')
     heading.textContent = textContent
     return heading
+}
+
+CityView.prototype.createItineraryButton = function(){
+  const itineraryButton = document.createElement('input')
+  itineraryButton.setAttribute('type', 'submit')
+  itineraryButton.setAttribute('value', 'Add to Itinerary')
+
+  itineraryButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    const newItineraryItem = this.createItineraryItem(event.target)
+    PubSub.publish('CityView:itinerary-item-submitted', newItineraryItem)
+    container.innerHTML = `Added to Itinerary`
+  })
+  return itineraryButton;
 }
 
 CityView.prototype.createForm = function(city, container){
@@ -116,6 +133,15 @@ CityView.prototype.createReview = function (form) {
   }
   return newReview
 }
+
+CityView.prototype.createItineraryItem = function (form) {
+      const newItineraryItem = {
+        name: form.name.value,
+        latitude: form.latitude.value,
+        longitude: form.longitude.value,
+      }
+      return newItineraryItem;
+    }
 
 
 module.exports = CityView;

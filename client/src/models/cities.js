@@ -2,12 +2,14 @@ const RequestHelper = require('../helpers/request_helper.js');
 const CitiesRequestHelper = require('../helpers/cities_request_helper.js');
 const PubSub = require(`../helpers/pubsub.js`);
 
-const Cities = function (apiUrl, citiesUrl, myCitiesUrl) {
+const Cities = function (apiUrl, citiesUrl, myCitiesUrl, itineraryUrl) {
   this.apiUrl = apiUrl;
   this.citiesUrl = citiesUrl;
   this.myCitiesUrl = myCitiesUrl;
+  this.itineraryUrl = itineraryUrl;
   this.citiesRequest = new RequestHelper(this.citiesUrl);
   this.myCitiesRequest = new RequestHelper(this.myCitiesUrl);
+  this.itineraryRequest = new RequestHelper(this.itineraryUrl)
 }
 
 Cities.prototype.getData = function (counter = 0, index = 1) {
@@ -52,8 +54,11 @@ Cities.prototype.bindEvents = function() {
       PubSub.publish('Cities:my-cities-loaded', cities)
     })
   })
+  PubSub.subscribe('CityView:itinerary-item-submitted', (event) => {
+    this.itineraryRequest.postOne(event.detail)
+  })
   PubSub.subscribe("ItinerarySelectView:itinerary-selected", (event) => {
-    this.myCitiesRequest.get().then((cities) => {
+    this.itineraryRequest.get().then((cities) => {
       PubSub.publish('Cities:itinerary-loaded', cities)
     })
   })

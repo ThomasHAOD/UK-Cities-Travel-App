@@ -20,6 +20,10 @@ MongoClient.connect('mongodb://localhost:27017')
     const myCitiesCollection = db.collection('my_uk_cities');
     const myCitiesRouter = createRouter(myCitiesCollection);
     app.use('/api/my-cities', myCitiesRouter);
+
+    const itineraryCollection = db.collection('itinerary');
+    const itineraryRouter = createRouter(itineraryCollection);
+    app.use('/api/itinerary', itineraryRouter);
   })
   .catch(console.err);
 

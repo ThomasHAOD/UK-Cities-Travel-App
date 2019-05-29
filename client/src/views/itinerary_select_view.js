@@ -8,7 +8,7 @@ ItinerarySelectView.prototype.bindEvents = function () {
     this.selector.addEventListener("click", (event) => {
         if (!event.target.id) return
         const myCities = event.target.id;
-        PubSub.publish("ItinerarySelectView:my-cities-selected", myCities)
+        PubSub.publish("ItinerarySelectView:itinerary-selected", myCities)
     })
 };
 
