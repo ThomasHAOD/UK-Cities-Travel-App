@@ -71,10 +71,20 @@ CityView.prototype.createForm = function(city, container){
     review.setAttribute('maxlength', 1000);
     review.id = `review`;
 
-    const objectID = document.createElement('input')
-    objectID.style.display = 'none'
-    objectID.setAttribute('name', 'objectID')
-    objectID.value = city._id
+    const name = document.createElement('input')
+    name.style.display = 'none'
+    name.setAttribute('name', 'name')
+    name.value = city.name
+
+    const latitude = document.createElement('input')
+    latitude.style.display = 'none'
+    latitude.setAttribute('name', 'latitude')
+    latitude.value = city.latitude
+
+    const longitude = document.createElement('input')
+    longitude.style.display = 'none'
+    longitude.setAttribute('name', 'longitude')
+    longitude.value = city.longitude
 
     const submit = document.createElement('input');
     submit.setAttribute('type', 'submit')
@@ -82,7 +92,9 @@ CityView.prototype.createForm = function(city, container){
 
     form.appendChild(review);
     form.appendChild(submit);
-    form.appendChild(objectID);
+    form.appendChild(name);
+    form.appendChild(latitude);
+    form.appendChild(longitude);
 
     form.addEventListener('submit', (event) => {
       event.preventDefault()
@@ -96,10 +108,11 @@ CityView.prototype.createForm = function(city, container){
 
 CityView.prototype.createReview = function (form) {
   const newReview = {
+    name: form.name.value,
+    latitude: form.latitude.value,
+    longitude: form.longitude.value,
     rating: form.rating.value,
     review: form.review.value,
-    objectID: form.objectID.value,
-    reviewed: true
   }
   return newReview
 }
