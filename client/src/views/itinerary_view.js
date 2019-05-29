@@ -18,7 +18,7 @@ ItineraryView.prototype.render = function (city) {
 }
 
 ItineraryView.prototype.createHeading = function (textContent) {
-    const heading = document.createElement('h3')
+    const heading = document.createElement('h1')
     heading.textContent = textContent
     return heading
 }
