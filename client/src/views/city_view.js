@@ -15,7 +15,7 @@ CityView.prototype.render = function (city) {
     const reviewRatingForm = this.createForm(city, cityContainer)
     cityContainer.appendChild(reviewRatingForm);
 
-    const itineraryButton = this.createItineraryButton()
+    const itineraryButton = this.createItineraryButton(city)
     cityContainer.appendChild(itineraryButton)
 
     this.container.appendChild(cityContainer)
@@ -28,16 +28,16 @@ CityView.prototype.createHeading = function(textContent) {
     return heading
 }
 
-CityView.prototype.createItineraryButton = function(){
-  const itineraryButton = document.createElement('input')
-  itineraryButton.setAttribute('type', 'submit')
-  itineraryButton.setAttribute('value', 'Add to Itinerary')
+CityView.prototype.createItineraryButton = function(city){
+  const itineraryButton = document.createElement('button')
+  itineraryButton.id = 'itinerary-buttton'
+  itineraryButton.textContent = 'Add to Itinerary'
 
   itineraryButton.addEventListener('click', (event) => {
-    event.preventDefault()
-    const newItineraryItem = this.createItineraryItem(event.target)
+    
+    const newItineraryItem = this.createItineraryItem(city)
     PubSub.publish('CityView:itinerary-item-submitted', newItineraryItem)
-    container.innerHTML = `Added to Itinerary`
+    // cityContainer.innerHTML = `Added to Itinerary`
   })
   return itineraryButton;
 }
@@ -45,8 +45,6 @@ CityView.prototype.createItineraryButton = function(){
 CityView.prototype.createForm = function(city, container){
     const form = document.createElement('form');
     form.id = 'form';
-    form.setAttribute('action', 'POST')
-
 
     const rating1 = document.createElement('input');
     rating1.setAttribute('type', 'radio');
@@ -134,14 +132,14 @@ CityView.prototype.createReview = function (form) {
   return newReview
 }
 
-CityView.prototype.createItineraryItem = function (form) {
-      const newItineraryItem = {
-        name: form.name.value,
-        latitude: form.latitude.value,
-        longitude: form.longitude.value,
-      }
-      return newItineraryItem;
+CityView.prototype.createItineraryItem = function (city) {
+    const newItineraryItem = {
+        name: city.name,
+        latitude: city.latitude,
+        longitude: city.longitude,
     }
+  return newItineraryItem;
+}
 
 
 module.exports = CityView;

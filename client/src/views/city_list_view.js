@@ -14,6 +14,9 @@ CityListView.prototype.bindEvents = function () {
     PubSub.subscribe('Cities:my-cities-loaded', (event) =>{
       this.renderMyCities(event.detail);
     })
+    PubSub.subscribe('Cities:itinerary-loaded', (event) =>{
+      this.renderItinerary(event.detail);
+    })
 }
 
 CityListView.prototype.renderMyCities = function (cities) {
@@ -31,4 +34,13 @@ CityListView.prototype.render = function (cities) {
         cityView.render(city)
     })
 }
+
+CityListView.prototype.renderItinerary = function (cities) {
+    this.container.innerHTML = ''
+    const cityView = new CityView(this.container)
+    cities.forEach((city) => {
+        cityView.render(city)
+    })
+}
+
 module.exports = CityListView;

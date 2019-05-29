@@ -43,6 +43,18 @@ MapView.prototype.init = function () {
       })
       this.leafletMap.addLayer(this.markers)
     })
+
+    PubSub.subscribe('Cities:itinerary-loaded', (event) => {
+      this.markers.clearLayers()
+      event.detail.forEach((city) => {
+        const lat = city.latitude
+        const long = city.longitude
+        const name = city.name
+        const coords = [lat, long]
+        this.addMarker(name, coords, this.markers)
+      })
+      this.leafletMap.addLayer(this.markers)
+    })
   }
 
   MapView.prototype.addMarker = function (name, coords, layerGroup) {
