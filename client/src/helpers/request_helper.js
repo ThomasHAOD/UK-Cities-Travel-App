@@ -17,7 +17,7 @@ RequestHelper.prototype.post = function (payload) {
 };
 
 RequestHelper.prototype.postOne = function (payload) {
-  return fetch(`${this.url}/one`, {
+  return fetch(`${this.url}/${payload}`, {
     method: 'POST',
     body: JSON.stringify(payload),
     headers: {'Content-Type': 'application/json'}
@@ -37,6 +37,12 @@ RequestHelper.prototype.patch = function (payload) {
     headers: {'Content-Type': 'application/json'}
   })
   .then(response => response.json())
+}
+
+RequestHelper.prototype.deleteAll = function (){
+  return fetch(this.url, {
+    method: 'DELETE'
+  })
 }
 
 

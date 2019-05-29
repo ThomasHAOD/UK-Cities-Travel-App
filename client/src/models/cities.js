@@ -21,11 +21,26 @@ Cities.prototype.getData = function (counter = 0, index = 1) {
     counter++;
     this.getData(counter, index);
   })}
-  const callDate = new Date();
+  const callDate = { today: new Date()}
   this.citiesRequest.postOne(callDate);
 };
 
 Cities.prototype.bindEvents = function() {
+  this.citiesRequest.get()
+    .then((cities) => {
+      let previousUpdateDate = cities.find((data) => {
+        return data.today
+       })
+      if (previousUpdateDate == undefined) {
+        previousUpdateDate = new Date('1900-01-01')
+        
+        if (new Date - previousUpdateDate > 604800000){          
+         this.citiesRequest.deleteAll();
+         this.getData()
+      }
+    } 
+  })
+
   PubSub.subscribe("RegionSelectorView:region-selected", (event) => {
     this.displayCities(event.detail)
   })
@@ -37,6 +52,8 @@ Cities.prototype.bindEvents = function() {
       PubSub.publish('Cities:my-cities-loaded', cities)
     })
   })
+
+  // return needsUpdate;
 }
 
 
