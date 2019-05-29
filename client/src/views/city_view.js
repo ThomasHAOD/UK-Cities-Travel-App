@@ -60,16 +60,16 @@ CityView.prototype.createForm = function(city, container){
 
     const buttonDiv = this.createRadioButtonDiv()
 
-    buttonDiv.appendChild(rating1);
-    buttonDiv.appendChild(label1);
-    buttonDiv.appendChild(rating2);
-    buttonDiv.appendChild(label2);
-    buttonDiv.appendChild(rating3);
-    buttonDiv.appendChild(label3);
-    buttonDiv.appendChild(rating4);
-    buttonDiv.appendChild(label4);
     buttonDiv.appendChild(rating5);
     buttonDiv.appendChild(label5);
+    buttonDiv.appendChild(rating4);
+    buttonDiv.appendChild(label4);
+    buttonDiv.appendChild(rating3);
+    buttonDiv.appendChild(label3);
+    buttonDiv.appendChild(rating2);
+    buttonDiv.appendChild(label2);
+    buttonDiv.appendChild(rating1);
+    buttonDiv.appendChild(label1);
 
     form.appendChild(buttonDiv)
 
