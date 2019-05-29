@@ -18,15 +18,26 @@ textarea {
   resize: none;
 }
 
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: lightgrey;
+  border: none;
+  color: rgb(80,120,150);
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: auto;
+  font-size: 15px;
+}
+
 /* maybe need to refactor form to split properly */
 
 .region-list-item {
-    border: 2px;
-    border-color: black;
     margin: 5px;
     text-align: center;
     background-color: lightgray;
     margin-bottom: 0px;
+    height: 55px;
+    cursor: pointer;
 }
 
 .region-list-item:hover {
@@ -57,6 +68,7 @@ textarea {
 #cities-view-container div {
     margin: 10px;
     border: solid aliceblue 3px;
+    border-radius: 3px;
     padding: 10px;
     background-color: rgb(255, 158, 113);
     height: 135px;
