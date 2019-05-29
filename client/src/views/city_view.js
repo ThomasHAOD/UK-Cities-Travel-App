@@ -58,16 +58,20 @@ CityView.prototype.createForm = function(city, container){
     const label4 = this.createRadioLabel('4');
     const label5 = this.createRadioLabel('5');
 
-    form.appendChild(rating1);
-    form.appendChild(rating2);
-    form.appendChild(rating3);
-    form.appendChild(rating4);
-    form.appendChild(rating5);
-    form.appendChild(label1);
-    form.appendChild(label2);
-    form.appendChild(label3);
-    form.appendChild(label4);
-    form.appendChild(label5);
+    const buttonDiv = this.createRadioButtonDiv()
+
+    buttonDiv.appendChild(rating1);
+    buttonDiv.appendChild(label1);
+    buttonDiv.appendChild(rating2);
+    buttonDiv.appendChild(label2);
+    buttonDiv.appendChild(rating3);
+    buttonDiv.appendChild(label3);
+    buttonDiv.appendChild(rating4);
+    buttonDiv.appendChild(label4);
+    buttonDiv.appendChild(rating5);
+    buttonDiv.appendChild(label5);
+
+    form.appendChild(buttonDiv)
 
     const review = document.createElement('textarea');
     review.setAttribute('maxlength', 1000);
@@ -106,6 +110,12 @@ CityView.prototype.createForm = function(city, container){
     })
 
     return form;
+}
+
+CityView.prototype.createRadioButtonDiv = function(){
+  const buttonDiv = document.createElement('span');
+  buttonDiv.setAttribute("class", "rating");
+  return buttonDiv;
 }
 
 CityView.prototype.createRadioInput = function (num) {
