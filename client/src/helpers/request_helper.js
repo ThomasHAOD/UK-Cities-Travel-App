@@ -17,7 +17,7 @@ RequestHelper.prototype.post = function (payload) {
 };
 
 RequestHelper.prototype.postOne = function (payload) {
-  return fetch(`${this.url}/${payload.rating}`, {
+  return fetch(`${this.url}/one`, {
     method: 'POST',
     body: JSON.stringify(payload),
     headers: {'Content-Type': 'application/json'}

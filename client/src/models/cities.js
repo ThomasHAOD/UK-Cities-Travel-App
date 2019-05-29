@@ -21,6 +21,8 @@ Cities.prototype.getData = function (counter = 0, index = 1) {
     counter++;
     this.getData(counter, index);
   })}
+  const callDate = new Date();
+  this.citiesRequest.postOne(callDate);
 };
 
 Cities.prototype.bindEvents = function() {

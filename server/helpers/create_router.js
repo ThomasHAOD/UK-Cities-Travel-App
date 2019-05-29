@@ -55,6 +55,14 @@ const createRouter = function (collection) {
     .then(docs => res.json(docs))
   })
 
+  router.delete('/', (req,res) => {
+    collection.remove()
+      .then(() => {
+        collection.find().toArray()
+        .then(docs => res.json(docs))
+      })
+  })
+
   return router;
 
 }
