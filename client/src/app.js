@@ -3,6 +3,7 @@ const MapView = require(`./views/map_view.js`);
 const RegionSelectorView = require("./views/region_selector_view.js");
 const Cities = require(`./models/cities.js`);
 const MyCitiesSelectView = require('./views/my_cities_select_view.js')
+const ItinerarySelectView = require('./views/itinerary_select_view.js')
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -15,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const myCitiesSelect = document.querySelector("#true");
   const myCitiesSelectView = new MyCitiesSelectView(myCitiesSelect)
   myCitiesSelectView.bindEvents()
+
+  const itinerarySelect = document.querySelector("#itinerary");
+  const itinerarySelectView = new ItinerarySelectView(itinerarySelect)
+  itinerarySelectView.bindEvents()
 
   const regionSelector = document.querySelector("#region-list");
   const regionSelectorView = new RegionSelectorView(regionSelector);

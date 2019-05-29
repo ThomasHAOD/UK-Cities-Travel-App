@@ -52,6 +52,11 @@ Cities.prototype.bindEvents = function() {
       PubSub.publish('Cities:my-cities-loaded', cities)
     })
   })
+  PubSub.subscribe("ItinerarySelectView:itinerary-selected", (event) => {
+    this.myCitiesRequest.get().then((cities) => {
+      PubSub.publish('Cities:itinerary-loaded', cities)
+    })
+  })
 
   // return needsUpdate;
 }
