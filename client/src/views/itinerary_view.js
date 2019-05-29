@@ -5,7 +5,6 @@ const ItineraryView = function (container) {
 }
 
 ItineraryView.prototype.render = function (city) {
-    this.container.innerHTML = ""
 
     const cityContainer = document.createElement('div')
     cityContainer.addClass = 'city'

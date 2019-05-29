@@ -1,6 +1,7 @@
 const PubSub = require('../helpers/pubsub.js');
 const CityView = require('./city_view.js');
 const MyCitiesView = require('./my_cities_view.js')
+const ItineraryView = require('./itinerary_view.js')
 
 const CityListView = function (container) {
     this.container = container
@@ -37,9 +38,9 @@ CityListView.prototype.render = function (cities) {
 
 CityListView.prototype.renderItinerary = function (cities) {
     this.container.innerHTML = ''
-    const cityView = new CityView(this.container)
+    const itineraryView = new ItineraryView(this.container)
     cities.forEach((city) => {
-        cityView.render(city)
+        itineraryView.render(city)
     })
 }
 
