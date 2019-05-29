@@ -21,7 +21,7 @@ textarea {
   resize: none;
 }
 
-input[type=button], input[type=submit], input[type=reset] {
+input[type=button], input[type=submit], input[type=reset], button {
   background-color: lightgrey;
   border: none;
   color: rgb(80,120,150);
@@ -76,8 +76,8 @@ input[type=button], input[type=submit], input[type=reset] {
     border: solid aliceblue 3px;
     border-radius: 3px;
     padding: 10px;
-    background-color: rgb(255, 158, 113);
-    height: 135px;
+    background-color: rgb(187, 187, 187);
+    height: 150px;
 }
 
 #true.my-cities-menu-item {
@@ -119,3 +119,5 @@ input[type=button], input[type=submit], input[type=reset] {
     grid-gap: 20px;
     margin-bottom: 0px;
 }
+
+
