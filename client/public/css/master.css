@@ -2,6 +2,15 @@ body {
     font-family: 'Alegreya Sans', sans-serif;
 }
 
+header {
+    background-image: url('../images/London-Skyline-At-Night-l.jpg');
+    height: 20%;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+/* maybe need to refactor form to split properly */
+
 .region-list-item {
     border: 2px;
     border-color: black;
@@ -11,6 +20,8 @@ body {
 #nav-bar {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
+    background-color: white;
+    opacity: 0.7;
 }
 
 #cities-maps-container {
@@ -23,6 +34,12 @@ body {
     grid-template-columns: repeat(3, 1fr);
     height: 75vh;
     overflow: scroll;
+}
+
+#cities-view-container div {
+    display: grid;
+    grid-template-rows: repeat(2);
+    margin: 10px;
 }
 
 #map {
