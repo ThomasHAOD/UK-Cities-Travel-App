@@ -3,7 +3,7 @@ body {
     background-image: url('../images/London-Skyline-At-Night-l.png');
     background-repeat: no-repeat;
     background-position: center top;
-    background-size: 100% 25vh;
+    background-size: 100% 30vh;
     color: rgb(48, 48, 48);
     background-color: black;
 }
@@ -43,10 +43,99 @@ input[type=button], input[type=submit], input[type=reset], button {
     margin-bottom: 0px;
     height: 55px;
     cursor: pointer;
+    position: relative;
+    border-radius: 5px; 
+    z-index: 1;
 }
 
-.region-list-item:hover {
-    background-color: beige;
+.region-list-item::after {
+    content: "";
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(248, 172, 101, 0.466);
+    z-index: -1;
+
+    transform: scale(.01);
+    transition: transform 200ms ease-in-out;
+}
+
+.region-list-item:hover::after {
+    transform: scale(1);
+
+}
+
+ #true.my-cities-menu-item {
+    font-size: 25px;
+    text-align: center;
+    background-color: lightgray;
+    margin-left: 55px;
+    margin-right: 55px;
+    margin-bottom: 0px;
+    grid-column: 3;
+    position: relative;
+    border-radius: 5px; 
+    z-index: 1;
+}
+
+#itinerary.itinerary-menu-item {
+    font-size: 25px;
+    text-align: center;
+    background-color: lightgray;
+    margin-left: 55px;
+    margin-right: 55px;
+    margin-bottom: 0px;
+    position: relative;
+    border-radius: 5px; 
+    z-index: 1;
+}
+
+#true.my-cities-menu-item::after {
+    content: "";
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(248, 172, 101, 0.466);
+    z-index: -1;
+
+    transform: scale(.01);
+    transition: transform 200ms ease-in-out;
+}
+
+#itinerary.itinerary-menu-item::after {
+    content: "";
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(248, 172, 101, 0.466);
+    z-index: -1;
+
+    transform: scale(.01);
+    transition: transform 200ms ease-in-out;
+}
+
+
+
+
+#true.my-cities-menu-item:hover::after {
+    transform: scale(1);    
+    cursor: pointer;
+}
+
+#itinerary.itinerary-menu-item:hover::after {
+    transform: scale(1);    
+    cursor: pointer;
+}
+
+#bus-img {
+    height: 100%;
+    
 }
 
 #nav-bar {
@@ -59,16 +148,18 @@ input[type=button], input[type=submit], input[type=reset], button {
     margin-bottom: 0px;
 }
 
+
 #cities-maps-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    height: 85vh;
+    height: 70vh;
     position: relative;
     bottom: 0;
 }
 
 #cities-view-container {
     display: grid;
+    border-top: solid lightgray 3px;
     grid-template-columns: repeat(3, 1fr);
     overflow: scroll;
     background-color: lightgray;
@@ -84,33 +175,7 @@ input[type=button], input[type=submit], input[type=reset], button {
     height: 200px;
 }
 
-#true.my-cities-menu-item {
-    font-size: 32px;
-    text-align: center;
-    background-color: rgb(122, 122, 122);
-    margin-left: 55px;
-    margin-right: 55px;
-    margin-bottom: 0px;
-}
 
-#itinerary.itinerary-menu-item {
-    font-size: 32px;
-    text-align: center;
-    background-color: rgb(122, 122, 122);
-    margin-left: 55px;
-    margin-right: 55px;
-    margin-bottom: 0px;
-}
-
-#true.my-cities-menu-item:hover {
-    background-color: lightsalmon;
-    cursor: pointer;
-}
-
-#itinerary.itinerary-menu-item:hover {
-    background-color: lightsalmon;
-    cursor: pointer;
-}
 
 
 #map {
@@ -118,7 +183,7 @@ input[type=button], input[type=submit], input[type=reset], button {
     width: 100%;
     background-color: lightgray;
     border-top: solid lightgray 3px;
-
+    border-bottom: 3px solid lightgray;
 }
 
 #region-list {
