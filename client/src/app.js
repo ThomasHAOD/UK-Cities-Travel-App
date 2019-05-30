@@ -7,9 +7,9 @@ const ItinerarySelectView = require('./views/itinerary_select_view.js')
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const london = [51.51, -0.13];
+  const london = [54.5, -2];
   const mapdiv = document.querySelector(`#map`);
-  const mapView = new MapView(mapdiv, london, 7);
+  const mapView = new MapView(mapdiv, london, 6);
   mapView.init()
   mapView.bindEvents()
 
