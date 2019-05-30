@@ -170,7 +170,7 @@ input[type=button], input[type=submit], input[type=reset], button {
     grid-template-columns: repeat(3, 1fr);
     overflow: scroll;
     background-color: lightgray;
-    border-bottom: 3px solid lightgray;
+    /* border-bottom: 3px solid lightgray; */
     background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
 }
 
@@ -190,8 +190,8 @@ input[type=button], input[type=submit], input[type=reset], button {
     min-height: 400px;
     width: 100%;
     background-color: lightgray;
-    border-top: solid lightgray 3px;
-    border-bottom: 3px solid lightgray;
+    /* border-top: solid lightgray 3px;
+    border-bottom: 3px solid lightgray; */
     box-shadow: 10px 10px 5px grey;
 
 }
