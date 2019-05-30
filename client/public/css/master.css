@@ -4,8 +4,9 @@ body {
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100% 30vh;
-    color: rgb(48, 48, 48);
-    background-color: black;
+    /* text-shadow: 0px 1px 1px #4d4d4d; */
+	color: rgb(26, 26, 26);
+    background-color: rgb(100, 100, 100);
 }
 
 /* header {
@@ -39,13 +40,14 @@ input[type=button], input[type=submit], input[type=reset], button {
 .region-list-item {
     margin: 5px;
     text-align: center;
-    background-color: lightgray;
+    background-color: rgb(175, 175, 175);
     margin-bottom: 0px;
     height: 55px;
     cursor: pointer;
     position: relative;
     border-radius: 5px; 
     z-index: 1;
+    box-shadow: 10px 10px 5px grey;
 }
 
 .region-list-item::after {
@@ -78,6 +80,8 @@ input[type=button], input[type=submit], input[type=reset], button {
     position: relative;
     border-radius: 5px; 
     z-index: 1;
+    box-shadow: 10px 10px 5px grey;
+
 }
 
 #itinerary.itinerary-menu-item {
@@ -90,6 +94,8 @@ input[type=button], input[type=submit], input[type=reset], button {
     position: relative;
     border-radius: 5px; 
     z-index: 1;
+    box-shadow: 10px 10px 5px grey;
+
 }
 
 #true.my-cities-menu-item::after {
@@ -135,6 +141,7 @@ input[type=button], input[type=submit], input[type=reset], button {
 
 #bus-img {
     height: 100%;
+    box-shadow: 10px 10px 5px grey;
     
 }
 
@@ -164,19 +171,20 @@ input[type=button], input[type=submit], input[type=reset], button {
     overflow: scroll;
     background-color: lightgray;
     border-bottom: 3px solid lightgray;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
 }
 
 #cities-view-container div {
     margin: 10px;
-    border: solid aliceblue 3px;
-    border-radius: 3px;
+    /* border: solid aliceblue 3px;
+    border-radius: 3px; */
     padding: 10px;
     background-color: rgb(187, 187, 187);
     height: 200px;
+    box-shadow: 10px 10px 5px grey;
+    /* background-color: #4a5c56; */
+
 }
-
-
-
 
 #map {
     min-height: 400px;
@@ -184,6 +192,8 @@ input[type=button], input[type=submit], input[type=reset], button {
     background-color: lightgray;
     border-top: solid lightgray 3px;
     border-bottom: 3px solid lightgray;
+    box-shadow: 10px 10px 5px grey;
+
 }
 
 #region-list {
