@@ -169,7 +169,7 @@ input[type=button], input[type=submit], input[type=reset], button {
     border-top: solid lightgray 3px;
     grid-template-columns: repeat(3, 1fr);
     overflow: scroll;
-    background-color: lightgray;
+    background-color: rgb(92, 92, 92);
     /* border-bottom: 3px solid lightgray; */
     background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
 }
